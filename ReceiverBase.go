@@ -3,7 +3,7 @@ package gosmpp
 import (
 	"context"
 
-	"github.com/linxGnu/gosmpp/Data"
+	"github.com/andrewz1/gosmpp/Data"
 )
 
 // base struct for receiver.

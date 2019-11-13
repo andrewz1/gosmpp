@@ -7,9 +7,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/linxGnu/gosmpp/Data"
-	"github.com/linxGnu/gosmpp/Exception"
-	"github.com/linxGnu/gosmpp/Utils"
+	"github.com/andrewz1/gosmpp/Data"
+	"github.com/andrewz1/gosmpp/Exception"
+	"github.com/andrewz1/gosmpp/Utils"
 )
 
 const (

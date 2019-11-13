@@ -1,6 +1,6 @@
 package gosmpp
 
-import "github.com/linxGnu/gosmpp/PDU"
+import "github.com/andrewz1/gosmpp/PDU"
 
 type ServerPDUEvent struct {
 	ReceivedPDUEvent

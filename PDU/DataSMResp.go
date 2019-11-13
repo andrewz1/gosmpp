@@ -1,10 +1,10 @@
 package PDU
 
 import (
-	"github.com/linxGnu/gosmpp/Data"
-	"github.com/linxGnu/gosmpp/Exception"
-	"github.com/linxGnu/gosmpp/PDU/TLV"
-	"github.com/linxGnu/gosmpp/Utils"
+	"github.com/andrewz1/gosmpp/Data"
+	"github.com/andrewz1/gosmpp/Exception"
+	"github.com/andrewz1/gosmpp/PDU/TLV"
+	"github.com/andrewz1/gosmpp/Utils"
 )
 
 type DataSMResp struct {

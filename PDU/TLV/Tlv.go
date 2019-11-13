@@ -1,9 +1,9 @@
 package TLV
 
 import (
-	"github.com/linxGnu/gosmpp/Exception"
-	"github.com/linxGnu/gosmpp/PDU/Common"
-	"github.com/linxGnu/gosmpp/Utils"
+	"github.com/andrewz1/gosmpp/Exception"
+	"github.com/andrewz1/gosmpp/PDU/Common"
+	"github.com/andrewz1/gosmpp/Utils"
 )
 
 var DONT_CHECK_LIMIT = -1

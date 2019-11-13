@@ -4,9 +4,9 @@ import (
 	"context"
 	"time"
 
-	"github.com/linxGnu/gosmpp/Data"
-	"github.com/linxGnu/gosmpp/Exception"
-	"github.com/linxGnu/gosmpp/PDU"
+	"github.com/andrewz1/gosmpp/Data"
+	"github.com/andrewz1/gosmpp/Exception"
+	"github.com/andrewz1/gosmpp/PDU"
 )
 
 type Session struct {

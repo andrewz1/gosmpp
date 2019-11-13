@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"runtime/debug"
 
-	"github.com/linxGnu/gosmpp/Data"
+	"github.com/andrewz1/gosmpp/Data"
 )
 
 type Exception struct {

@@ -1,5 +1,5 @@
-module github.com/linxGnu/gosmpp
+module github.com/andrewz1/gosmpp
 
-go 1.12
+go 1.13
 
 require golang.org/x/text v0.3.2

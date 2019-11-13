@@ -1,6 +1,6 @@
 package PDU
 
-import "github.com/linxGnu/gosmpp/Data"
+import "github.com/andrewz1/gosmpp/Data"
 
 type BindTransmitter struct {
 	BindRequest

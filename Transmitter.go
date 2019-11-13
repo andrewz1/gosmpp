@@ -1,8 +1,8 @@
 package gosmpp
 
 import (
-	"github.com/linxGnu/gosmpp/Exception"
-	"github.com/linxGnu/gosmpp/PDU"
+	"github.com/andrewz1/gosmpp/Exception"
+	"github.com/andrewz1/gosmpp/PDU"
 )
 
 type Transmitter struct {
