@@ -18,7 +18,7 @@ const (
 )
 
 var t_bite byte = 0x1f
-var t_short int16 = 666
+var t_short uint16 = 666
 
 func TestAppendByte0(t *testing.T) {
 	buffer := Utils.NewBuffer(make([]byte, 0, 6))

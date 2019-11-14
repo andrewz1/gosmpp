@@ -17,14 +17,14 @@ func NewTLVUByte() *TLVUByte {
 	return a
 }
 
-func NewTLVUByteWithTag(tag int16) *TLVUByte {
+func NewTLVUByteWithTag(tag uint16) *TLVUByte {
 	a := NewTLVUByte()
 	a.Tag = tag
 
 	return a
 }
 
-func NewTLVUByteWithTagValue(tag int16, value uint8) *TLVUByte {
+func NewTLVUByteWithTagValue(tag uint16, value uint8) *TLVUByte {
 	a := NewTLVUByteWithTag(tag)
 	a.SetValue(value)
 

@@ -28,7 +28,7 @@ func NewBindRequest() *BindRequest {
 	return a
 }
 
-func NewBindRequestWithCmdId(cmdId int32) *BindRequest {
+func NewBindRequestWithCmdId(cmdId uint32) *BindRequest {
 	a := NewBindRequest()
 	a.SetCommandId(cmdId)
 

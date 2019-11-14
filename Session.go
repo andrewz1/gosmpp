@@ -13,9 +13,9 @@ type Session struct {
 	opened             bool
 	bound              bool
 	disallowUnknownPDU bool
-	state              int32
+	state              uint32
 	stateChecking      bool
-	sessionType        int32
+	sessionType        uint32
 	connection         IConnection
 	transmitter        *Transmitter
 	receiver           *Receiver
@@ -24,22 +24,22 @@ type Session struct {
 }
 
 const (
-	STATE_NOT_ALLOWED int32 = 0x00
-	STATE_CLOSED      int32 = 0x01
-	STATE_OPENED      int32 = 0x02
-	STATE_TRANSMITTER int32 = 0x04
-	STATE_RECEIVER    int32 = 0x08
-	STATE_TRANSCEIVER int32 = 0x10
-	STATE_ALWAYS      int32 = STATE_OPENED | STATE_TRANSMITTER | STATE_RECEIVER | STATE_TRANSCEIVER
-	TYPE_ESME         int32 = 1
-	TYPE_MC           int32 = 2
+	STATE_NOT_ALLOWED uint32 = 0x00
+	STATE_CLOSED      uint32 = 0x01
+	STATE_OPENED      uint32 = 0x02
+	STATE_TRANSMITTER uint32 = 0x04
+	STATE_RECEIVER    uint32 = 0x08
+	STATE_TRANSCEIVER uint32 = 0x10
+	STATE_ALWAYS             = STATE_OPENED | STATE_TRANSMITTER | STATE_RECEIVER | STATE_TRANSCEIVER
+	TYPE_ESME         uint32 = 1
+	TYPE_MC           uint32 = 2
 )
 
 var esmeStateMatrix map[int]int = make(map[int]int)
 var mcStateMatrix map[int]int = make(map[int]int)
 var isMatrixInit = false
 
-func addValidState(m map[int]int, k, v int32) {
+func addValidState(m map[int]int, k, v uint32) {
 	m[int(k)] = int(v)
 }
 
@@ -185,15 +185,15 @@ func (c *Session) IsBound() bool {
 	return c.bound
 }
 
-func (c *Session) setState(state int32) {
+func (c *Session) setState(state uint32) {
 	c.state = state
 }
 
-func (c *Session) SetType(t int32) {
+func (c *Session) SetType(t uint32) {
 	c.sessionType = t
 }
 
-func (c *Session) GetType() int32 {
+func (c *Session) GetType() uint32 {
 	return c.sessionType
 }
 
@@ -548,7 +548,7 @@ func (c *Session) checkResponse(resp PDU.IPDU, exp PDU.IResponse) (result PDU.IR
 	}
 }
 
-func (c *Session) safeGenericNack(commandStatus, sequenceNumber int32) *Exception.Exception {
+func (c *Session) safeGenericNack(commandStatus, sequenceNumber uint32) *Exception.Exception {
 	return c.GenericNackWithCmStatusSeqNum(commandStatus, sequenceNumber)
 }
 
@@ -561,7 +561,7 @@ func (c *Session) GenericNack(resp *PDU.GenericNack) *Exception.Exception {
 	return c.Respond(resp)
 }
 
-func (c *Session) GenericNackWithCmStatusSeqNum(commandStatus, sequenceNumber int32) *Exception.Exception {
+func (c *Session) GenericNackWithCmStatusSeqNum(commandStatus, sequenceNumber uint32) *Exception.Exception {
 	gnack := PDU.NewGenericNackWithCmStatusSeqNum(commandStatus, sequenceNumber)
 	err := c.CheckPDUState(gnack)
 	if err != nil {
@@ -571,7 +571,7 @@ func (c *Session) GenericNackWithCmStatusSeqNum(commandStatus, sequenceNumber in
 	return c.GenericNack(gnack)
 }
 
-func (c *Session) GetState() int32 {
+func (c *Session) GetState() uint32 {
 	return c.state
 }
 
@@ -590,7 +590,7 @@ func (c *Session) CheckPDUState(pdu PDU.IPDU) *Exception.Exception {
 			cId := pdu.GetCommandId()
 			r, ok := pduMatrix[int(cId)]
 			if ok {
-				return c.CheckState(int32(r))
+				return c.CheckState(uint32(r))
 			}
 		}
 	}
@@ -598,7 +598,7 @@ func (c *Session) CheckPDUState(pdu PDU.IPDU) *Exception.Exception {
 	return nil
 }
 
-func (c *Session) CheckState(requestedState int32) *Exception.Exception {
+func (c *Session) CheckState(requestedState uint32) *Exception.Exception {
 	if c.stateChecking {
 		if c.state&requestedState == 0 {
 			return Exception.WrongSessionStateException
@@ -616,7 +616,7 @@ func (c *Session) DisableStateChecking() {
 	c.stateChecking = false
 }
 
-func (c *Session) IsStateAllowed(requestedState int32) bool {
+func (c *Session) IsStateAllowed(requestedState uint32) bool {
 	return c.CheckState(requestedState) == nil
 }
 

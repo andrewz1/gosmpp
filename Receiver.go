@@ -182,7 +182,7 @@ func (c *Receiver) Receive() {
 	pdu, err := c.ReceivePDUFromConnection(c.connection, c.unprocessed)
 	if err != nil {
 		if err == Exception.InvalidPDUException {
-			var seqNr int32
+			var seqNr uint32
 			if pdu != nil {
 				seqNr = pdu.GetSequenceNumber()
 			}
@@ -193,7 +193,7 @@ func (c *Receiver) Receive() {
 				pdu = PDU.NewGenericNackWithCmStatusSeqNum(Data.ESME_RINVMSGLEN, seqNr)
 			}
 		} else if err == Exception.UnknownCommandIdException {
-			var seqNr int32
+			var seqNr uint32
 			if pdu != nil {
 				seqNr = pdu.GetSequenceNumber()
 			}
@@ -349,7 +349,7 @@ func (c *Receiver) handleException(err *Exception.Exception) {
 	}
 }
 
-func (c *Receiver) sendGenericNack(commandStatus, seqNum int32) {
+func (c *Receiver) sendGenericNack(commandStatus, seqNum uint32) {
 	if c.transmitter != nil {
 		gnack := PDU.NewGenericNackWithCmStatusSeqNum(commandStatus, seqNum)
 		c.transmitter.Send(gnack)

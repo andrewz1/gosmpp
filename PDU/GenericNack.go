@@ -17,7 +17,7 @@ func NewGenericNack() *GenericNack {
 	return a
 }
 
-func NewGenericNackWithCmStatusSeqNum(cmdStatus, seqNumber int32) *GenericNack {
+func NewGenericNackWithCmStatusSeqNum(cmdStatus, seqNumber uint32) *GenericNack {
 	a := NewGenericNack()
 	a.SetCommandStatus(cmdStatus)
 	a.SetSequenceNumber(seqNumber)

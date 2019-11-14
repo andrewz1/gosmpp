@@ -15,7 +15,7 @@ type ReplaceSM struct {
 	validityPeriod       string
 	registeredDelivery   byte
 	smDefaultMsgId       byte
-	smLength             int16
+	smLength             uint16
 	shortMessage         *ShortMessage
 }
 
@@ -36,8 +36,8 @@ func (a *ReplaceSM) Construct() {
 	a.validityPeriod = Data.DFLT_VALIDITY
 	a.registeredDelivery = Data.DFLT_REG_DELIVERY
 	a.smDefaultMsgId = Data.DFLT_DFLTMSGID
-	a.smLength = int16(Data.DFLT_MSG_LEN)
-	a.shortMessage = NewShortMessageWithMaxLength(int32(Data.SM_MSG_LEN))
+	a.smLength = uint16(Data.DFLT_MSG_LEN)
+	a.shortMessage = NewShortMessageWithMaxLength(Data.SM_MSG_LEN)
 }
 
 func (c *ReplaceSM) GetInstance() (IPDU, error) {
@@ -218,7 +218,7 @@ func (c *ReplaceSM) SetShortMessage(value string) *Exception.Exception {
 		return err
 	}
 
-	c.SetSmLength(int16(c.shortMessage.GetLength()))
+	c.SetSmLength(uint16(c.shortMessage.GetLength()))
 	return nil
 }
 
@@ -228,15 +228,15 @@ func (c *ReplaceSM) SetShortMessageWithEncoding(value string, enc Data.Encoding)
 		return err
 	}
 
-	c.SetSmLength(int16(c.shortMessage.GetLength()))
+	c.SetSmLength(uint16(c.shortMessage.GetLength()))
 	return nil
 }
 
-func (c *ReplaceSM) SetSmLength(value int16) {
+func (c *ReplaceSM) SetSmLength(value uint16) {
 	c.smLength = value
 }
 
-func (c *ReplaceSM) GetSmLength() int16 {
+func (c *ReplaceSM) GetSmLength() uint16 {
 	return c.smLength
 }
 

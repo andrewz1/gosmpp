@@ -4,7 +4,7 @@ import "time"
 
 type Unprocessed struct {
 	unprocessed      *ByteBuffer
-	expected         int32
+	expected         uint32
 	hasUnprocessed   bool
 	lastTimeReceived int64 // in nano second
 }
@@ -33,7 +33,7 @@ func (c *Unprocessed) SetHasUnprocessed(value bool) {
 	c.hasUnprocessed = value
 }
 
-func (c *Unprocessed) SetExpected(value int32) {
+func (c *Unprocessed) SetExpected(value uint32) {
 	c.expected = value
 }
 
@@ -53,7 +53,7 @@ func (c *Unprocessed) GetHasUnprocessed() bool {
 	return c.hasUnprocessed
 }
 
-func (c *Unprocessed) GetExpected() int32 {
+func (c *Unprocessed) GetExpected() uint32 {
 	return c.expected
 }
 

@@ -9,15 +9,15 @@ import (
 
 type ShortMessage struct {
 	Common.ByteData
-	minLength   int32
-	maxLength   int32
+	minLength   uint32
+	maxLength   uint32
 	message     string
 	enc         Data.Encoding
-	length      int32
+	length      uint32
 	messageData []byte
 }
 
-func NewShortMessageWithMaxLength(maxLength int32) *ShortMessage {
+func NewShortMessageWithMaxLength(maxLength uint32) *ShortMessage {
 	a := &ShortMessage{}
 	a.Construct()
 
@@ -26,7 +26,7 @@ func NewShortMessageWithMaxLength(maxLength int32) *ShortMessage {
 	return a
 }
 
-func NewShortMessageWithMinMaxLength(minLength, maxLength int32) *ShortMessage {
+func NewShortMessageWithMinMaxLength(minLength, maxLength uint32) *ShortMessage {
 	a := &ShortMessage{}
 	a.Construct()
 
@@ -53,7 +53,7 @@ func (c *ShortMessage) SetData(buf *Utils.ByteBuffer) *Exception.Exception {
 	if c.messageData == nil {
 		c.length = 0
 	} else {
-		c.length = int32(len(c.messageData))
+		c.length = uint32(len(c.messageData))
 	}
 
 	if c.length < c.minLength || c.length > c.maxLength {
@@ -94,7 +94,7 @@ func (c *ShortMessage) SetMessageWithEncoding(message string, enc Data.Encoding)
 	c.messageData = tmp
 	c.message = message
 	c.enc = enc
-	c.length = int32(len(c.messageData))
+	c.length = uint32(len(c.messageData))
 
 	return nil
 }
@@ -153,7 +153,7 @@ func (c *ShortMessage) GetMessageWithEncoding(enc Data.Encoding) (string, *Excep
 	}
 }
 
-func (c *ShortMessage) GetLength() int32 {
+func (c *ShortMessage) GetLength() uint32 {
 	return c.length
 }
 

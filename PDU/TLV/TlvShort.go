@@ -7,7 +7,7 @@ import (
 
 type TLVShort struct {
 	TLV
-	Value int16
+	Value uint16
 }
 
 func NewTLVShort() *TLVShort {
@@ -17,14 +17,14 @@ func NewTLVShort() *TLVShort {
 	return a
 }
 
-func NewTLVShortWithTag(tag int16) *TLVShort {
+func NewTLVShortWithTag(tag uint16) *TLVShort {
 	a := NewTLVShort()
 	a.Tag = tag
 
 	return a
 }
 
-func NewTLVShortWithTagValue(tag int16, value int16) *TLVShort {
+func NewTLVShortWithTagValue(tag uint16, value uint16) *TLVShort {
 	a := NewTLVShortWithTag(tag)
 	a.SetValue(value)
 
@@ -64,14 +64,14 @@ func (c *TLVShort) SetValueData(buffer *Utils.ByteBuffer) *Exception.Exception {
 	return nil
 }
 
-func (c *TLVShort) SetValue(value int16) *Exception.Exception {
+func (c *TLVShort) SetValue(value uint16) *Exception.Exception {
 	c.Value = value
 	c.MarkValueSet()
 
 	return nil
 }
 
-func (c *TLVShort) GetValue() (int16, *Exception.Exception) {
+func (c *TLVShort) GetValue() (uint16, *Exception.Exception) {
 	if c.HasValue() {
 		return c.Value, nil
 	}

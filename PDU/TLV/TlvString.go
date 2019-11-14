@@ -17,21 +17,21 @@ func NewTLVString() *TLVString {
 	return a
 }
 
-func NewTLVStringWithTag(tag int16) *TLVString {
+func NewTLVStringWithTag(tag uint16) *TLVString {
 	a := NewTLVString()
 	a.Tag = tag
 
 	return a
 }
 
-func NewTLVStringWithTagValue(tag int16, value string) *TLVString {
+func NewTLVStringWithTagValue(tag uint16, value string) *TLVString {
 	a := NewTLVStringWithTag(tag)
 	a.SetValue(value)
 
 	return a
 }
 
-func NewTLVStringWithTagLength(tag int16, min, max int) *TLVString {
+func NewTLVStringWithTagLength(tag uint16, min, max int) *TLVString {
 	a := NewTLVStringWithTag(tag)
 	a.MinLength = min
 	a.MaxLength = max
@@ -39,7 +39,7 @@ func NewTLVStringWithTagLength(tag int16, min, max int) *TLVString {
 	return a
 }
 
-func NewTLVStringWithTagLengthValue(tag int16, min, max int, value string) *TLVString {
+func NewTLVStringWithTagLengthValue(tag uint16, min, max int, value string) *TLVString {
 	a := NewTLVStringWithTagLength(tag, min, max)
 	a.SetValue(value)
 

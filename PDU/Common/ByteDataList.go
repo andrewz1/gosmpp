@@ -108,7 +108,7 @@ func (c *ByteDataList) GetData() (*Utils.ByteBuffer, *Exception.Exception) {
 	numberValues := c.GetCount()
 	switch int(c.LengthOfSize) {
 	case Utils.SZ_BYTE:
-		err := buf.Write_Byte(EncodeUnsigned(int16(numberValues)))
+		err := buf.Write_Byte(EncodeUnsigned(uint16(numberValues)))
 		buf.Grow(numberValues * Utils.SZ_BYTE)
 		if err != nil {
 			return nil, err
@@ -120,7 +120,7 @@ func (c *ByteDataList) GetData() (*Utils.ByteBuffer, *Exception.Exception) {
 			return nil, err
 		}
 	case Utils.SZ_INT:
-		err := buf.Write_Int(int32(numberValues))
+		err := buf.Write_Int(uint32(numberValues))
 		buf.Grow(numberValues * Utils.SZ_INT)
 		if err != nil {
 			return nil, err

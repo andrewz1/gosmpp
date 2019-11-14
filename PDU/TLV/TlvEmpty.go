@@ -17,14 +17,14 @@ func NewTLVEmpty() *TLVEmpty {
 	return a
 }
 
-func NewTLVEmptyWithTag(tag int16) *TLVEmpty {
+func NewTLVEmptyWithTag(tag uint16) *TLVEmpty {
 	a := NewTLVEmpty()
 	a.Tag = tag
 
 	return a
 }
 
-func NewTLVEmptyWithTagValue(tag int16, present bool) *TLVEmpty {
+func NewTLVEmptyWithTagValue(tag uint16, present bool) *TLVEmpty {
 	a := NewTLVEmptyWithTag(tag)
 	a.Present = present
 	a.MarkValueSet()

@@ -15,7 +15,7 @@ type Address struct {
 	Ton              byte
 	Npi              byte
 	Address          string
-	MaxAddressLength int32
+	MaxAddressLength uint32
 }
 
 // NewAddress create new address with default max length
@@ -39,14 +39,14 @@ func NewAddressWithAddr(addr string) (*Address, *Exception.Exception) {
 }
 
 // NewAddressWithMaxLength create new address, set max length in C of address
-func NewAddressWithMaxLength(len int32) *Address {
+func NewAddressWithMaxLength(len uint32) *Address {
 	addr := NewAddress()
 	addr.MaxAddressLength = len
 
 	return addr
 }
 
-func NewAddressWithTonNpiLen(ton, npi byte, len int32) *Address {
+func NewAddressWithTonNpiLen(ton, npi byte, len uint32) *Address {
 	addr := NewAddress()
 	addr.Ton = ton
 	addr.Npi = npi
@@ -66,7 +66,7 @@ func NewAddressWithTonNpiAddr(ton, npi byte, addr string) (*Address, *Exception.
 	return a, nil
 }
 
-func NewAddressWithTonNpiAddrMaxLen(ton, npi byte, addr string, len int32) (*Address, *Exception.Exception) {
+func NewAddressWithTonNpiAddrMaxLen(ton, npi byte, addr string, len uint32) (*Address, *Exception.Exception) {
 	a := NewAddressWithTonNpiLen(ton, npi, len)
 	err := a.SetAddress(addr)
 	if err != nil {

@@ -76,7 +76,7 @@ func TestGetData(t *testing.T) {
 		for _, npi := range NPIS {
 			for len := 1; len <= 0x21; len++ {
 				tmp := RandStringRunes(len)
-				addres, err := PDU.NewAddressWithTonNpiAddrMaxLen(ton, npi, tmp, int32(len+1))
+				addres, err := PDU.NewAddressWithTonNpiAddrMaxLen(ton, npi, tmp, uint32(len+1))
 				if err != nil {
 					t.Fail()
 				}

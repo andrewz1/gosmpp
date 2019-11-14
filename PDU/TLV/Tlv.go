@@ -9,8 +9,8 @@ import (
 var DONT_CHECK_LIMIT = -1
 
 type ITLV interface {
-	GetTag() int16
-	SetTag(tag int16)
+	GetTag() uint16
+	SetTag(tag uint16)
 	SetData(bb *Utils.ByteBuffer) (err *Exception.Exception)
 	GetData() (*Utils.ByteBuffer, *Exception.Exception)
 	HasValue() bool
@@ -20,7 +20,7 @@ type ITLV interface {
 
 type TLV struct {
 	Common.ByteData
-	Tag        int16
+	Tag        uint16
 	ValueIsSet bool
 	MinLength  int
 	MaxLength  int
@@ -33,14 +33,14 @@ func NewTLV() *TLV {
 	return a
 }
 
-func NewTLVWithTag(tag int16) *TLV {
+func NewTLVWithTag(tag uint16) *TLV {
 	a := NewTLV()
 	a.SetTag(tag)
 
 	return a
 }
 
-func NewTLVWithTagAndLength(tag int16, minLenght, maxLength int) *TLV {
+func NewTLVWithTagAndLength(tag uint16, minLenght, maxLength int) *TLV {
 	a := NewTLVWithTag(tag)
 	a.MinLength = minLenght
 	a.MaxLength = maxLength
@@ -58,11 +58,11 @@ func (c *TLV) Construct() {
 	c.ValueIsSet = false
 }
 
-func (c *TLV) GetTag() int16 {
+func (c *TLV) GetTag() uint16 {
 	return c.Tag
 }
 
-func (c *TLV) SetTag(tag int16) {
+func (c *TLV) SetTag(tag uint16) {
 	c.Tag = tag
 }
 

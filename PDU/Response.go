@@ -19,7 +19,7 @@ func NewResponse() *Response {
 	return a
 }
 
-func NewResponseWithCmdId(cmdId int32) *Response {
+func NewResponseWithCmdId(cmdId uint32) *Response {
 	a := NewResponse()
 	a.SetCommandId(cmdId)
 

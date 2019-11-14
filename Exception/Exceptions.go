@@ -10,7 +10,7 @@ import (
 
 type Exception struct {
 	Error            error
-	ErrorCode        int32
+	ErrorCode        uint32
 	SerialVersionUID int64
 }
 

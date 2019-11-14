@@ -21,7 +21,7 @@ type SubmitMultiSM struct {
 	validityPeriod       string
 	replaceIfPresentFlag byte
 	smDefaultMsgId       byte
-	smLength             int16
+	smLength             uint16
 	shortMessage         *ShortMessage
 
 	registeredDelivery byte
@@ -73,10 +73,10 @@ func (a *SubmitMultiSM) Construct() {
 	a.validityPeriod = Data.DFLT_VALIDITY
 	a.priorityFlag = Data.DFLT_PRIORITY_FLAG
 	a.smDefaultMsgId = Data.DFLT_DFLTMSGID
-	a.smLength = int16(Data.DFLT_MSG_LEN)
+	a.smLength = uint16(Data.DFLT_MSG_LEN)
 	a.protocolId = Data.DFLT_PROTOCOLID
 	a.replaceIfPresentFlag = Data.DFTL_REPLACE_IFP
-	a.shortMessage = NewShortMessageWithMaxLength(int32(Data.SM_MSG_LEN))
+	a.shortMessage = NewShortMessageWithMaxLength(Data.SM_MSG_LEN)
 
 	a.serviceType = Data.DFLT_SRVTYPE
 	a.sourceAddr = NewAddressWithMaxLength(Data.SM_DATA_ADDR_LEN)
@@ -273,7 +273,7 @@ func (c *SubmitMultiSM) GetBody() (buf *Utils.ByteBuffer, err *Exception.Excepti
 	buf.Write_UnsafeByte(c.GetReplaceIfPresentFlag())
 	buf.Write_UnsafeByte(c.GetDataCoding())
 	buf.Write_UnsafeByte(c.GetSmDefaultMsgId())
-	buf.Write_UnsafeByte(Common.EncodeUnsigned(int16(c.GetSmLength())))
+	buf.Write_UnsafeByte(Common.EncodeUnsigned(uint16(c.GetSmLength())))
 
 	err = buf.Write_Buffer(shortMessage)
 	return
@@ -303,11 +303,11 @@ func (c *SubmitMultiSM) GetDataCoding() byte {
 	return c.dataCoding
 }
 
-func (c *SubmitMultiSM) SetSmLength(value int16) {
+func (c *SubmitMultiSM) SetSmLength(value uint16) {
 	c.smLength = value
 }
 
-func (c *SubmitMultiSM) GetSmLength() int16 {
+func (c *SubmitMultiSM) GetSmLength() uint16 {
 	return c.smLength
 }
 
@@ -505,11 +505,11 @@ func (c *SubmitMultiSM) HasLanguageIndicator() bool {
 	return c.languageIndicator.HasValue()
 }
 
-func (c *SubmitMultiSM) SetUserMessageReference(value int16) *Exception.Exception {
+func (c *SubmitMultiSM) SetUserMessageReference(value uint16) *Exception.Exception {
 	return c.userMessageReference.SetValue(value)
 }
 
-func (c *SubmitMultiSM) SetSourcePort(value int16) *Exception.Exception {
+func (c *SubmitMultiSM) SetSourcePort(value uint16) *Exception.Exception {
 	return c.sourcePort.SetValue(value)
 }
 
@@ -517,7 +517,7 @@ func (c *SubmitMultiSM) SetSourceAddrSubunit(value byte) *Exception.Exception {
 	return c.sourceAddrSubunit.SetValue(value)
 }
 
-func (c *SubmitMultiSM) SetDestinationPort(value int16) *Exception.Exception {
+func (c *SubmitMultiSM) SetDestinationPort(value uint16) *Exception.Exception {
 	return c.destinationPort.SetValue(value)
 }
 
@@ -525,7 +525,7 @@ func (c *SubmitMultiSM) SetDestAddrSubunit(value byte) *Exception.Exception {
 	return c.destAddrSubunit.SetValue(value)
 }
 
-func (c *SubmitMultiSM) SetSarMsgRefNum(value int16) *Exception.Exception {
+func (c *SubmitMultiSM) SetSarMsgRefNum(value uint16) *Exception.Exception {
 	return c.sarMsgRefNum.SetValue(value)
 }
 
@@ -573,7 +573,7 @@ func (c *SubmitMultiSM) SetDisplayTime(value byte) *Exception.Exception {
 	return c.displayTime.SetValue(value)
 }
 
-func (c *SubmitMultiSM) SetSmsSignal(value int16) *Exception.Exception {
+func (c *SubmitMultiSM) SetSmsSignal(value uint16) *Exception.Exception {
 	return c.smsSignal.SetValue(value)
 }
 
@@ -593,11 +593,11 @@ func (c *SubmitMultiSM) SetLanguageIndicator(value byte) *Exception.Exception {
 	return c.languageIndicator.SetValue(value)
 }
 
-func (c *SubmitMultiSM) GetUserMessageReference() (int16, *Exception.Exception) {
+func (c *SubmitMultiSM) GetUserMessageReference() (uint16, *Exception.Exception) {
 	return c.userMessageReference.GetValue()
 }
 
-func (c *SubmitMultiSM) GetSourcePort() (int16, *Exception.Exception) {
+func (c *SubmitMultiSM) GetSourcePort() (uint16, *Exception.Exception) {
 	return c.sourcePort.GetValue()
 }
 
@@ -605,7 +605,7 @@ func (c *SubmitMultiSM) GetSourceAddrSubunit() (byte, *Exception.Exception) {
 	return c.sourceAddrSubunit.GetValue()
 }
 
-func (c *SubmitMultiSM) GetDestinationPort() (int16, *Exception.Exception) {
+func (c *SubmitMultiSM) GetDestinationPort() (uint16, *Exception.Exception) {
 	return c.destinationPort.GetValue()
 }
 
@@ -613,7 +613,7 @@ func (c *SubmitMultiSM) GetDestAddrSubunit() (byte, *Exception.Exception) {
 	return c.destAddrSubunit.GetValue()
 }
 
-func (c *SubmitMultiSM) GetSarMsgRefNum() (int16, *Exception.Exception) {
+func (c *SubmitMultiSM) GetSarMsgRefNum() (uint16, *Exception.Exception) {
 	return c.sarMsgRefNum.GetValue()
 }
 
@@ -661,7 +661,7 @@ func (c *SubmitMultiSM) GetDisplayTime() (byte, *Exception.Exception) {
 	return c.displayTime.GetValue()
 }
 
-func (c *SubmitMultiSM) GetSmsSignal() (int16, *Exception.Exception) {
+func (c *SubmitMultiSM) GetSmsSignal() (uint16, *Exception.Exception) {
 	return c.smsSignal.GetValue()
 }
 

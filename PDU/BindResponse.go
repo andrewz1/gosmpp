@@ -13,7 +13,7 @@ type BindResponse struct {
 	scInterfaceVersion *TLV.TLVByte
 }
 
-func NewBindResponseWithCmdId(cmdId int32) *BindResponse {
+func NewBindResponseWithCmdId(cmdId uint32) *BindResponse {
 	a := &BindResponse{}
 	a.Construct()
 	a.SetCommandId(cmdId)

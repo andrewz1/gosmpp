@@ -32,7 +32,7 @@ var pduList []IPDU = []IPDU{
 	NewGenericNack(),
 }
 
-func CreatePDUWithCmdId(cmdId int32) (IPDU, error) {
+func CreatePDUWithCmdId(cmdId uint32) (IPDU, error) {
 	if pduList == nil {
 		return nil, nil
 	}

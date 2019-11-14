@@ -7,7 +7,7 @@ import (
 
 type TLVInt struct {
 	TLV
-	Value int32
+	Value uint32
 }
 
 func NewTLVInt() *TLVInt {
@@ -17,16 +17,16 @@ func NewTLVInt() *TLVInt {
 	return a
 }
 
-func NewTLVIntWithTag(tag int16) *TLVInt {
+func NewTLVIntWithTag(tag uint16) *TLVInt {
 	a := NewTLVInt()
 	a.Tag = tag
 
 	return a
 }
 
-func NewTLVIntWithTagValue(tag int16, value int) *TLVInt {
+func NewTLVIntWithTagValue(tag uint16, value int) *TLVInt {
 	a := NewTLVIntWithTag(tag)
-	a.SetValue(int32(value))
+	a.SetValue(uint32(value))
 
 	return a
 }
@@ -63,14 +63,14 @@ func (c *TLVInt) SetValueData(buffer *Utils.ByteBuffer) *Exception.Exception {
 	return nil
 }
 
-func (c *TLVInt) SetValue(value int32) *Exception.Exception {
+func (c *TLVInt) SetValue(value uint32) *Exception.Exception {
 	c.Value = value
 	c.MarkValueSet()
 
 	return nil
 }
 
-func (c *TLVInt) GetValue() (int32, *Exception.Exception) {
+func (c *TLVInt) GetValue() (uint32, *Exception.Exception) {
 	if c.HasValue() {
 		return c.Value, nil
 	}

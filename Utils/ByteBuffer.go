@@ -92,7 +92,7 @@ func (c *ByteBuffer) Read_Byte() (b byte, ex *Exception.Exception) {
 }
 
 // Read_UnsafeShort read short without knowing about error
-func (c *ByteBuffer) Read_UnsafeShort() int16 {
+func (c *ByteBuffer) Read_UnsafeShort() uint16 {
 	if c.Buffer == nil {
 		return 0
 	}
@@ -103,7 +103,7 @@ func (c *ByteBuffer) Read_UnsafeShort() int16 {
 }
 
 // Read_Short read short with checking error
-func (c *ByteBuffer) Read_Short() (int16, *Exception.Exception) {
+func (c *ByteBuffer) Read_Short() (uint16, *Exception.Exception) {
 	if c.Buffer == nil {
 		return 0, Exception.NewExceptionFromStr("Buffer not init!")
 	}
@@ -113,16 +113,16 @@ func (c *ByteBuffer) Read_Short() (int16, *Exception.Exception) {
 		return 0, Exception.NewException(err)
 	}
 
-	var result int16
-	result |= int16(b[0] & 0xff)
+	var result uint16
+	result |= uint16(b[0] & 0xff)
 	result <<= 8
-	result |= int16(b[1] & 0xff)
+	result |= uint16(b[1] & 0xff)
 
 	return result, nil
 }
 
 // Read_UnsafeInt read short without knowing about error
-func (c *ByteBuffer) Read_UnsafeInt() int32 {
+func (c *ByteBuffer) Read_UnsafeInt() uint32 {
 	if c.Buffer == nil {
 		return 0
 	}
@@ -133,7 +133,7 @@ func (c *ByteBuffer) Read_UnsafeInt() int32 {
 }
 
 // Read_Int read int with checking error
-func (c *ByteBuffer) Read_Int() (int32, *Exception.Exception) {
+func (c *ByteBuffer) Read_Int() (uint32, *Exception.Exception) {
 	if c.Buffer == nil {
 		return 0, Exception.NewExceptionFromStr("Buffer not init!")
 	}
@@ -143,14 +143,14 @@ func (c *ByteBuffer) Read_Int() (int32, *Exception.Exception) {
 		return 0, Exception.NewException(err)
 	}
 
-	var result int32
-	result |= int32(b[0] & 0xff)
+	var result uint32
+	result |= uint32(b[0] & 0xff)
 	result <<= 8
-	result |= int32(b[1] & 0xff)
+	result |= uint32(b[1] & 0xff)
 	result <<= 8
-	result |= int32(b[2] & 0xff)
+	result |= uint32(b[2] & 0xff)
 	result <<= 8
-	result |= int32(b[3] & 0xff)
+	result |= uint32(b[3] & 0xff)
 
 	return result, nil
 }
@@ -210,7 +210,7 @@ func (c *ByteBuffer) Write_Byte(data byte) *Exception.Exception {
 }
 
 // Write_UnsafeShort write short without checking error
-func (c *ByteBuffer) Write_UnsafeShort(data int16) {
+func (c *ByteBuffer) Write_UnsafeShort(data uint16) {
 	if c.Buffer == nil {
 		c.Buffer = &bytes.Buffer{}
 	}
@@ -221,7 +221,7 @@ func (c *ByteBuffer) Write_UnsafeShort(data int16) {
 }
 
 // Write_Short write short with checking error
-func (c *ByteBuffer) Write_Short(data int16) *Exception.Exception {
+func (c *ByteBuffer) Write_Short(data uint16) *Exception.Exception {
 	if c.Buffer == nil {
 		c.Buffer = &bytes.Buffer{}
 	}
@@ -235,7 +235,7 @@ func (c *ByteBuffer) Write_Short(data int16) *Exception.Exception {
 }
 
 // Write_UnsafeInt write int without checking error
-func (c *ByteBuffer) Write_UnsafeInt(data int32) {
+func (c *ByteBuffer) Write_UnsafeInt(data uint32) {
 	if c.Buffer == nil {
 		c.Buffer = &bytes.Buffer{}
 	}
@@ -248,7 +248,7 @@ func (c *ByteBuffer) Write_UnsafeInt(data int32) {
 }
 
 // Write_Int write int with checking error
-func (c *ByteBuffer) Write_Int(data int32) *Exception.Exception {
+func (c *ByteBuffer) Write_Int(data uint32) *Exception.Exception {
 	if c.Buffer == nil {
 		c.Buffer = &bytes.Buffer{}
 	}

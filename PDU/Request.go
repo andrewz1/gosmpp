@@ -18,7 +18,7 @@ func NewRequest() *Request {
 	return a
 }
 
-func NewRequestWithCmdId(cmdId int32) *Request {
+func NewRequestWithCmdId(cmdId uint32) *Request {
 	a := NewRequest()
 	a.SetCommandId(cmdId)
 
@@ -44,7 +44,7 @@ func (c *Request) GetResponse() (res IResponse, err error) {
 	return
 }
 
-func (c *Request) GetResponseCommandId() (int32, error) {
+func (c *Request) GetResponseCommandId() (uint32, error) {
 	res, err := c.This.(IRequest).CreateResponse()
 	if err != nil {
 		return 0, err

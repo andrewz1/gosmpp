@@ -17,14 +17,14 @@ func NewTLVOctets() *TLVOctets {
 	return a
 }
 
-func NewTLVOctetsWithTag(tag int16) *TLVOctets {
+func NewTLVOctetsWithTag(tag uint16) *TLVOctets {
 	a := NewTLVOctets()
 	a.Tag = tag
 
 	return a
 }
 
-func NewTLVOctetsWithTagLength(tag int16, min, max int) *TLVOctets {
+func NewTLVOctetsWithTagLength(tag uint16, min, max int) *TLVOctets {
 	a := NewTLVOctetsWithTag(tag)
 	a.MinLength = min
 	a.MaxLength = max
@@ -32,14 +32,14 @@ func NewTLVOctetsWithTagLength(tag int16, min, max int) *TLVOctets {
 	return a
 }
 
-func NewTLVOctetsWithTagValue(tag int16, buf *Utils.ByteBuffer) *TLVOctets {
+func NewTLVOctetsWithTagValue(tag uint16, buf *Utils.ByteBuffer) *TLVOctets {
 	a := NewTLVOctetsWithTag(tag)
 	a.SetValue(buf)
 
 	return a
 }
 
-func NewTLVOctetsWithTagLengthValue(tag int16, min, max int, buf *Utils.ByteBuffer) *TLVOctets {
+func NewTLVOctetsWithTagLengthValue(tag uint16, min, max int, buf *Utils.ByteBuffer) *TLVOctets {
 	a := NewTLVOctetsWithTagLength(tag, min, max)
 	a.SetValue(buf)
 

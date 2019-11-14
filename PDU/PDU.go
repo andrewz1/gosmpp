@@ -17,15 +17,15 @@ const (
 	VALID_ALL    byte = 3
 )
 
-var sequenceNumber int32
+var sequenceNumber uint32
 
-func nextSequenceNumber() (v int32) {
+func nextSequenceNumber() (v uint32) {
 	// & 0x7FFFFFFF: cater for integer overflow
 	// Allowed range is 0x01 to 0x7FFFFFFF. This
 	// will still result in a single invalid value
 	// of 0x00 every ~2 billion PDUs (not too bad):
-	if v = atomic.AddInt32(&sequenceNumber, 1) & 0x7FFFFFFF; v <= 0 {
-		v = 1
+	if v = atomic.AddUint32(&sequenceNumber, 1) & 0x7FFFFFFF; v == 0 {
+		v = atomic.AddUint32(&sequenceNumber, 1) & 0x7FFFFFFF
 	}
 	return
 }
@@ -59,7 +59,7 @@ func NewPDU() *PDU {
 	return a
 }
 
-func NewPDUWithCommand(commandId int32) *PDU {
+func NewPDUWithCommand(commandId uint32) *PDU {
 	a := NewPDU()
 	a.CheckHeader()
 	a.SetCommandId(commandId)
@@ -187,7 +187,7 @@ func (c *PDU) GetData() (buf *Utils.ByteBuffer, err *Exception.Exception, source
 	buf.Write_Buffer(body)
 	buf.Write_Buffer(opbody)
 
-	c.SetCommandLength(int32(buf.Len()) + Data.PDU_HEADER_SIZE)
+	c.SetCommandLength(uint32(buf.Len()) + Data.PDU_HEADER_SIZE)
 
 	pduBuf, err := c.GetHeader()
 	if err != nil {
@@ -329,7 +329,7 @@ func (c *PDU) registerExtraOptional(tlv TLV.ITLV) {
 	}
 }
 
-func (c *PDU) findOptional(optionalParams []TLV.ITLV, tag int16) TLV.ITLV {
+func (c *PDU) findOptional(optionalParams []TLV.ITLV, tag uint16) TLV.ITLV {
 	if optionalParams == nil {
 		return nil
 	}
@@ -349,7 +349,7 @@ func (c *PDU) SetExtraOptional(tlv TLV.ITLV) {
 	c.replaceExtraOptional(tlv)
 }
 
-func (c *PDU) GetExtraOptional(tag int16) TLV.ITLV {
+func (c *PDU) GetExtraOptional(tag uint16) TLV.ITLV {
 	return c.findOptional(c.ExtraOptionalParameters, tag)
 }
 
@@ -370,53 +370,53 @@ func (c *PDU) replaceExtraOptional(tlv TLV.ITLV) {
 	c.registerExtraOptional(tlv)
 }
 
-func (c *PDU) GetCommandLength() int32 {
+func (c *PDU) GetCommandLength() uint32 {
 	c.CheckHeader()
 	return c.Header.GetCommandLength()
 }
 
-func (c *PDU) SetCommandLength(length int32) {
+func (c *PDU) SetCommandLength(length uint32) {
 	c.CheckHeader()
 	c.Header.SetCommandLength(length)
 }
 
-func (c *PDU) GetCommandId() int32 {
+func (c *PDU) GetCommandId() uint32 {
 	c.CheckHeader()
 	return c.Header.GetCommandId()
 }
 
-func (c *PDU) SetCommandId(cmdid int32) {
+func (c *PDU) SetCommandId(cmdid uint32) {
 	c.CheckHeader()
 	c.Header.SetCommandId(cmdid)
 }
 
-func (c *PDU) GetCommandStatus() int32 {
+func (c *PDU) GetCommandStatus() uint32 {
 	c.CheckHeader()
 	return c.Header.GetCommandStatus()
 }
 
-func (c *PDU) SetCommandStatus(status int32) {
+func (c *PDU) SetCommandStatus(status uint32) {
 	c.CheckHeader()
 	c.Header.SetCommandStatus(status)
 }
 
-func (c *PDU) GetSequenceNumber() int32 {
+func (c *PDU) GetSequenceNumber() uint32 {
 	c.CheckHeader()
 	return c.Header.GetSequenceNumber()
 }
 
-func (c *PDU) SetSequenceNumber(seq int32) {
+func (c *PDU) SetSequenceNumber(seq uint32) {
 	c.CheckHeader()
 	c.Header.SetSequenceNumber(seq)
 	c.SequenceNumberChanged = true
 }
 
 func (c *PDU) IsOk() bool {
-	return c.GetCommandStatus() == int32(Data.ESME_ROK)
+	return c.GetCommandStatus() == Data.ESME_ROK
 }
 
 func (c *PDU) IsGNack() bool {
-	return c.GetCommandId() == int32(Data.GENERIC_NACK)
+	return c.GetCommandId() == Data.GENERIC_NACK
 }
 
 func CreatePDU(buf *Utils.ByteBuffer) (IPDU, *Exception.Exception, IPDUHeader) {

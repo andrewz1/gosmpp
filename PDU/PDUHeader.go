@@ -7,22 +7,22 @@ import (
 )
 
 type IPDUHeader interface {
-	GetSequenceNumber() int32
-	SetSequenceNumber(seq int32)
-	GetCommandId() int32
-	SetCommandId(cmdId int32)
-	GetCommandLength() int32
-	SetCommandLength(length int32)
-	GetCommandStatus() int32
-	SetCommandStatus(status int32)
+	GetSequenceNumber() uint32
+	SetSequenceNumber(seq uint32)
+	GetCommandId() uint32
+	SetCommandId(cmdId uint32)
+	GetCommandLength() uint32
+	SetCommandLength(length uint32)
+	GetCommandStatus() uint32
+	SetCommandStatus(status uint32)
 }
 
 type PDUHeader struct {
 	Common.ByteData
-	CommandLength  int32
-	CommandId      int32
-	CommandStatus  int32
-	SequenceNumber int32
+	CommandLength  uint32
+	CommandId      uint32
+	CommandStatus  uint32
+	SequenceNumber uint32
 }
 
 func NewPDUHeader() *PDUHeader {
@@ -50,35 +50,35 @@ func (c *PDUHeader) GetData() (res *Utils.ByteBuffer, err *Exception.Exception) 
 	return buf, nil
 }
 
-func (c *PDUHeader) GetCommandLength() int32 {
+func (c *PDUHeader) GetCommandLength() uint32 {
 	return c.CommandLength
 }
 
-func (c *PDUHeader) SetCommandLength(length int32) {
+func (c *PDUHeader) SetCommandLength(length uint32) {
 	c.CommandLength = length
 }
 
-func (c *PDUHeader) GetCommandId() int32 {
+func (c *PDUHeader) GetCommandId() uint32 {
 	return c.CommandId
 }
 
-func (c *PDUHeader) SetCommandId(cmdId int32) {
+func (c *PDUHeader) SetCommandId(cmdId uint32) {
 	c.CommandId = cmdId
 }
 
-func (c *PDUHeader) GetCommandStatus() int32 {
+func (c *PDUHeader) GetCommandStatus() uint32 {
 	return c.CommandStatus
 }
 
-func (c *PDUHeader) SetCommandStatus(status int32) {
+func (c *PDUHeader) SetCommandStatus(status uint32) {
 	c.CommandStatus = status
 }
 
-func (c *PDUHeader) GetSequenceNumber() int32 {
+func (c *PDUHeader) GetSequenceNumber() uint32 {
 	return c.SequenceNumber
 }
 
-func (c *PDUHeader) SetSequenceNumber(seq int32) {
+func (c *PDUHeader) SetSequenceNumber(seq uint32) {
 	c.SequenceNumber = seq
 }
 

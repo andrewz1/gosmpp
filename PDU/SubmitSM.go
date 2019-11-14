@@ -21,7 +21,7 @@ type SubmitSM struct {
 	validityPeriod       string
 	replaceIfPresentFlag byte
 	smDefaultMsgId       byte
-	smLength             int16
+	smLength             uint16
 	shortMessage         *ShortMessage
 
 	registeredDelivery byte
@@ -79,10 +79,10 @@ func (a *SubmitSM) Construct() {
 	a.validityPeriod = Data.DFLT_VALIDITY
 	a.priorityFlag = Data.DFLT_PRIORITY_FLAG
 	a.smDefaultMsgId = Data.DFLT_DFLTMSGID
-	a.smLength = int16(Data.DFLT_MSG_LEN)
+	a.smLength = Data.DFLT_MSG_LEN
 	a.protocolId = Data.DFLT_PROTOCOLID
 	a.replaceIfPresentFlag = Data.DFTL_REPLACE_IFP
-	a.shortMessage = NewShortMessageWithMaxLength(int32(Data.SM_MSG_LEN))
+	a.shortMessage = NewShortMessageWithMaxLength(Data.SM_MSG_LEN)
 	a.userResponseCode = TLV.NewTLVByteWithTag(Data.OPT_PAR_USER_RESP_CODE)
 	a.serviceType = Data.DFLT_SRVTYPE
 	a.sourceAddr = NewAddressWithMaxLength(Data.SM_DATA_ADDR_LEN)
@@ -290,7 +290,7 @@ func (c *SubmitSM) GetBody() (buf *Utils.ByteBuffer, err *Exception.Exception, s
 	buf.Write_Byte(c.GetReplaceIfPresentFlag())
 	buf.Write_Byte(c.GetDataCoding())
 	buf.Write_Byte(c.GetSmDefaultMsgId())
-	buf.Write_Byte(Common.EncodeUnsigned(int16(c.GetSmLength())))
+	buf.Write_Byte(Common.EncodeUnsigned(uint16(c.GetSmLength())))
 
 	err = buf.Write_Buffer(shortMessage)
 	return
@@ -320,11 +320,11 @@ func (c *SubmitSM) GetDataCoding() byte {
 	return c.dataCoding
 }
 
-func (c *SubmitSM) SetSmLength(value int16) {
+func (c *SubmitSM) SetSmLength(value uint16) {
 	c.smLength = value
 }
 
-func (c *SubmitSM) GetSmLength() int16 {
+func (c *SubmitSM) GetSmLength() uint16 {
 	return c.smLength
 }
 
@@ -530,11 +530,11 @@ func (c *SubmitSM) SetUserResponseCode(value byte) *Exception.Exception {
 	return c.userResponseCode.SetValue(value)
 }
 
-func (c *SubmitSM) SetUserMessageReference(value int16) *Exception.Exception {
+func (c *SubmitSM) SetUserMessageReference(value uint16) *Exception.Exception {
 	return c.userMessageReference.SetValue(value)
 }
 
-func (c *SubmitSM) SetSourcePort(value int16) *Exception.Exception {
+func (c *SubmitSM) SetSourcePort(value uint16) *Exception.Exception {
 	return c.sourcePort.SetValue(value)
 }
 
@@ -542,7 +542,7 @@ func (c *SubmitSM) SetSourceAddrSubunit(value byte) *Exception.Exception {
 	return c.sourceAddrSubunit.SetValue(value)
 }
 
-func (c *SubmitSM) SetDestinationPort(value int16) *Exception.Exception {
+func (c *SubmitSM) SetDestinationPort(value uint16) *Exception.Exception {
 	return c.destinationPort.SetValue(value)
 }
 
@@ -550,7 +550,7 @@ func (c *SubmitSM) SetDestAddrSubunit(value byte) *Exception.Exception {
 	return c.destAddrSubunit.SetValue(value)
 }
 
-func (c *SubmitSM) SetSarMsgRefNum(value int16) *Exception.Exception {
+func (c *SubmitSM) SetSarMsgRefNum(value uint16) *Exception.Exception {
 	return c.sarMsgRefNum.SetValue(value)
 }
 
@@ -598,7 +598,7 @@ func (c *SubmitSM) SetDisplayTime(value byte) *Exception.Exception {
 	return c.displayTime.SetValue(value)
 }
 
-func (c *SubmitSM) SetSmsSignal(value int16) *Exception.Exception {
+func (c *SubmitSM) SetSmsSignal(value uint16) *Exception.Exception {
 	return c.smsSignal.SetValue(value)
 }
 
@@ -618,11 +618,11 @@ func (c *SubmitSM) SetLanguageIndicator(value byte) *Exception.Exception {
 	return c.languageIndicator.SetValue(value)
 }
 
-func (c *SubmitSM) GetUserMessageReference() (int16, *Exception.Exception) {
+func (c *SubmitSM) GetUserMessageReference() (uint16, *Exception.Exception) {
 	return c.userMessageReference.GetValue()
 }
 
-func (c *SubmitSM) GetSourcePort() (int16, *Exception.Exception) {
+func (c *SubmitSM) GetSourcePort() (uint16, *Exception.Exception) {
 	return c.sourcePort.GetValue()
 }
 
@@ -630,7 +630,7 @@ func (c *SubmitSM) GetSourceAddrSubunit() (byte, *Exception.Exception) {
 	return c.sourceAddrSubunit.GetValue()
 }
 
-func (c *SubmitSM) GetDestinationPort() (int16, *Exception.Exception) {
+func (c *SubmitSM) GetDestinationPort() (uint16, *Exception.Exception) {
 	return c.destinationPort.GetValue()
 }
 
@@ -638,7 +638,7 @@ func (c *SubmitSM) GetDestAddrSubunit() (byte, *Exception.Exception) {
 	return c.destAddrSubunit.GetValue()
 }
 
-func (c *SubmitSM) GetSarMsgRefNum() (int16, *Exception.Exception) {
+func (c *SubmitSM) GetSarMsgRefNum() (uint16, *Exception.Exception) {
 	return c.sarMsgRefNum.GetValue()
 }
 
@@ -686,7 +686,7 @@ func (c *SubmitSM) GetDisplayTime() (byte, *Exception.Exception) {
 	return c.displayTime.GetValue()
 }
 
-func (c *SubmitSM) GetSmsSignal() (int16, *Exception.Exception) {
+func (c *SubmitSM) GetSmsSignal() (uint16, *Exception.Exception) {
 	return c.smsSignal.GetValue()
 }
 
@@ -740,7 +740,7 @@ func (c *SubmitSM) SetShortMessage(value string) *Exception.Exception {
 		return err
 	}
 
-	c.SetSmLength(int16(c.shortMessage.GetLength()))
+	c.SetSmLength(uint16(c.shortMessage.GetLength()))
 	return nil
 }
 
@@ -750,7 +750,7 @@ func (c *SubmitSM) SetShortMessageWithEncoding(value string, enc Data.Encoding) 
 		return err
 	}
 
-	c.SetSmLength(int16(c.shortMessage.GetLength()))
+	c.SetSmLength(uint16(c.shortMessage.GetLength()))
 	return nil
 }
 
@@ -760,7 +760,7 @@ func (c *SubmitSM) SetShortMessageData(value *Utils.ByteBuffer) *Exception.Excep
 		return err
 	}
 
-	c.SetSmLength(int16(c.shortMessage.GetLength()))
+	c.SetSmLength(uint16(c.shortMessage.GetLength()))
 	return nil
 }
 

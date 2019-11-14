@@ -8,7 +8,7 @@ import (
 
 type UnsuccessSME struct {
 	Address
-	errorStatusCode int32
+	errorStatusCode uint32
 }
 
 func NewUnsuccessSME() *UnsuccessSME {
@@ -18,7 +18,7 @@ func NewUnsuccessSME() *UnsuccessSME {
 	return a
 }
 
-func NewUnsuccessSMEWithAddrErr(addr string, err int32) (*UnsuccessSME, *Exception.Exception) {
+func NewUnsuccessSMEWithAddrErr(addr string, err uint32) (*UnsuccessSME, *Exception.Exception) {
 	a := NewUnsuccessSME()
 	er := a.SetAddress(addr)
 	if er != nil {
@@ -29,7 +29,7 @@ func NewUnsuccessSMEWithAddrErr(addr string, err int32) (*UnsuccessSME, *Excepti
 	return a, nil
 }
 
-func NewUnsuccessSMEWithTonNpiAddrErr(ton, npi byte, addr string, err int32) (*UnsuccessSME, *Exception.Exception) {
+func NewUnsuccessSMEWithTonNpiAddrErr(ton, npi byte, addr string, err uint32) (*UnsuccessSME, *Exception.Exception) {
 	a, er := NewUnsuccessSMEWithAddrErr(addr, err)
 	if er != nil {
 		return nil, er
@@ -80,10 +80,10 @@ func (c *UnsuccessSME) GetData() (*Utils.ByteBuffer, *Exception.Exception) {
 	return buf, nil
 }
 
-func (c *UnsuccessSME) SetErrorStatusCode(sc int32) {
+func (c *UnsuccessSME) SetErrorStatusCode(sc uint32) {
 	c.errorStatusCode = sc
 }
 
-func (c *UnsuccessSME) GetErrorStatusCode() int32 {
+func (c *UnsuccessSME) GetErrorStatusCode() uint32 {
 	return c.errorStatusCode
 }

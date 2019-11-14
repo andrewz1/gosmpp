@@ -486,11 +486,11 @@ func (c *DataSM) HasItsSessionInfo() bool {
 	return c.itsSessionInfo.HasValue()
 }
 
-func (c *DataSM) SetUserMessageReference(value int16) *Exception.Exception {
+func (c *DataSM) SetUserMessageReference(value uint16) *Exception.Exception {
 	return c.userMessageReference.SetValue(value)
 }
 
-func (c *DataSM) SetSourcePort(value int16) *Exception.Exception {
+func (c *DataSM) SetSourcePort(value uint16) *Exception.Exception {
 	return c.sourcePort.SetValue(value)
 }
 
@@ -510,7 +510,7 @@ func (c *DataSM) SetSourceTelematicsId(value byte) *Exception.Exception {
 	return c.sourceTelematicsId.SetValue(value)
 }
 
-func (c *DataSM) SetDestinationPort(value int16) *Exception.Exception {
+func (c *DataSM) SetDestinationPort(value uint16) *Exception.Exception {
 	return c.destinationPort.SetValue(value)
 }
 
@@ -526,11 +526,11 @@ func (c *DataSM) SetDestBearerType(value byte) *Exception.Exception {
 	return c.destBearerType.SetValue(value)
 }
 
-func (c *DataSM) SetDestTelematicsId(value int16) *Exception.Exception {
+func (c *DataSM) SetDestTelematicsId(value uint16) *Exception.Exception {
 	return c.destTelematicsId.SetValue(value)
 }
 
-func (c *DataSM) SetSarMsgRefNum(value int16) *Exception.Exception {
+func (c *DataSM) SetSarMsgRefNum(value uint16) *Exception.Exception {
 	return c.sarMsgRefNum.SetValue(value)
 }
 
@@ -546,7 +546,7 @@ func (c *DataSM) SetMoreMsgsToSend(value byte) *Exception.Exception {
 	return c.moreMsgsToSend.SetValue(value)
 }
 
-func (c *DataSM) SetQosTimeToLive(value int32) *Exception.Exception {
+func (c *DataSM) SetQosTimeToLive(value uint32) *Exception.Exception {
 	return c.qosTimeToLive.SetValue(value)
 }
 
@@ -606,7 +606,7 @@ func (c *DataSM) SetDisplayTime(value byte) *Exception.Exception {
 	return c.displayTime.SetValue(value)
 }
 
-func (c *DataSM) SetSmsSignal(value int16) *Exception.Exception {
+func (c *DataSM) SetSmsSignal(value uint16) *Exception.Exception {
 	return c.smsSignal.SetValue(value)
 }
 
@@ -634,15 +634,15 @@ func (c *DataSM) SetItsReplyType(value byte) *Exception.Exception {
 	return c.itsReplyType.SetValue(value)
 }
 
-func (c *DataSM) SetItsSessionInfo(value int16) *Exception.Exception {
+func (c *DataSM) SetItsSessionInfo(value uint16) *Exception.Exception {
 	return c.itsSessionInfo.SetValue(value)
 }
 
-func (c *DataSM) GetUserMessageReference() (int16, *Exception.Exception) {
+func (c *DataSM) GetUserMessageReference() (uint16, *Exception.Exception) {
 	return c.userMessageReference.GetValue()
 }
 
-func (c *DataSM) GetSourcePort() (int16, *Exception.Exception) {
+func (c *DataSM) GetSourcePort() (uint16, *Exception.Exception) {
 	return c.sourcePort.GetValue()
 }
 
@@ -662,7 +662,7 @@ func (c *DataSM) GetSourceTelematicsId() (byte, *Exception.Exception) {
 	return c.sourceTelematicsId.GetValue()
 }
 
-func (c *DataSM) GetDestinationPort() (int16, *Exception.Exception) {
+func (c *DataSM) GetDestinationPort() (uint16, *Exception.Exception) {
 	return c.destinationPort.GetValue()
 }
 
@@ -678,11 +678,11 @@ func (c *DataSM) GetDestBearerType() (byte, *Exception.Exception) {
 	return c.destBearerType.GetValue()
 }
 
-func (c *DataSM) GetDestTelematicsId() (int16, *Exception.Exception) {
+func (c *DataSM) GetDestTelematicsId() (uint16, *Exception.Exception) {
 	return c.destTelematicsId.GetValue()
 }
 
-func (c *DataSM) GetSarMsgRefNum() (int16, *Exception.Exception) {
+func (c *DataSM) GetSarMsgRefNum() (uint16, *Exception.Exception) {
 	return c.sarMsgRefNum.GetValue()
 }
 
@@ -698,7 +698,7 @@ func (c *DataSM) GetMoreMsgsToSend() (byte, *Exception.Exception) {
 	return c.moreMsgsToSend.GetValue()
 }
 
-func (c *DataSM) GetQosTimeToLive() (int32, *Exception.Exception) {
+func (c *DataSM) GetQosTimeToLive() (uint32, *Exception.Exception) {
 	return c.qosTimeToLive.GetValue()
 }
 
@@ -758,7 +758,7 @@ func (c *DataSM) GetDisplayTime() (byte, *Exception.Exception) {
 	return c.displayTime.GetValue()
 }
 
-func (c *DataSM) GetSmsSignal() (int16, *Exception.Exception) {
+func (c *DataSM) GetSmsSignal() (uint16, *Exception.Exception) {
 	return c.smsSignal.GetValue()
 }
 
@@ -786,6 +786,6 @@ func (c *DataSM) GetItsReplyType() (byte, *Exception.Exception) {
 	return c.itsReplyType.GetValue()
 }
 
-func (c *DataSM) GetItsSessionInfo() (int16, *Exception.Exception) {
+func (c *DataSM) GetItsSessionInfo() (uint16, *Exception.Exception) {
 	return c.itsSessionInfo.GetValue()
 }

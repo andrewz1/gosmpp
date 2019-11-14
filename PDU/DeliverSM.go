@@ -22,7 +22,7 @@ type DeliverSM struct {
 	replaceIfPresentFlag byte // not used
 	dataCoding           byte
 	smDefaultMsgId       byte
-	smLength             int16
+	smLength             uint16
 	shortMessage         *ShortMessage
 
 	// optional params
@@ -95,7 +95,7 @@ func (a *DeliverSM) Construct() {
 	a.replaceIfPresentFlag = Data.DFTL_REPLACE_IFP
 	a.dataCoding = Data.DFLT_DATA_CODING
 	a.smDefaultMsgId = Data.DFLT_DFLTMSGID
-	a.smLength = int16(Data.DFLT_MSG_LEN)
+	a.smLength = uint16(Data.DFLT_MSG_LEN)
 	a.shortMessage = NewShortMessageWithMaxLength(Data.SM_MSG_LEN)
 
 	a.userMessageReference = TLV.NewTLVShortWithTag(Data.OPT_PAR_USER_MSG_REF)
@@ -375,11 +375,11 @@ func (c *DeliverSM) GetScheduleDeliveryTime() string {
 	return c.scheduleDeliveryTime
 }
 
-func (c *DeliverSM) SetSmLength(value int16) {
+func (c *DeliverSM) SetSmLength(value uint16) {
 	c.smLength = value
 }
 
-func (c *DeliverSM) GetSmLength() int16 {
+func (c *DeliverSM) GetSmLength() uint16 {
 	return c.smLength
 }
 
@@ -389,7 +389,7 @@ func (c *DeliverSM) SetShortMessage(value string) *Exception.Exception {
 		return err
 	}
 
-	c.SetSmLength(int16(c.shortMessage.GetLength()))
+	c.SetSmLength(uint16(c.shortMessage.GetLength()))
 	return nil
 }
 
@@ -545,19 +545,19 @@ func (c *DeliverSM) HasItsSessionInfo() bool {
 	return c.itsSessionInfo.HasValue()
 }
 
-func (c *DeliverSM) SetUserMessageReference(value int16) *Exception.Exception {
+func (c *DeliverSM) SetUserMessageReference(value uint16) *Exception.Exception {
 	return c.userMessageReference.SetValue(value)
 }
 
-func (c *DeliverSM) SetSourcePort(value int16) *Exception.Exception {
+func (c *DeliverSM) SetSourcePort(value uint16) *Exception.Exception {
 	return c.sourcePort.SetValue(value)
 }
 
-func (c *DeliverSM) SetDestinationPort(value int16) *Exception.Exception {
+func (c *DeliverSM) SetDestinationPort(value uint16) *Exception.Exception {
 	return c.destinationPort.SetValue(value)
 }
 
-func (c *DeliverSM) SetSarMsgRefNum(value int16) *Exception.Exception {
+func (c *DeliverSM) SetSarMsgRefNum(value uint16) *Exception.Exception {
 	return c.sarMsgRefNum.SetValue(value)
 }
 
@@ -613,23 +613,23 @@ func (c *DeliverSM) SetLanguageIndicator(value byte) *Exception.Exception {
 	return c.languageIndicator.SetValue(value)
 }
 
-func (c *DeliverSM) SetItsSessionInfo(value int16) *Exception.Exception {
+func (c *DeliverSM) SetItsSessionInfo(value uint16) *Exception.Exception {
 	return c.itsSessionInfo.SetValue(value)
 }
 
-func (c *DeliverSM) GetUserMessageReference() (int16, *Exception.Exception) {
+func (c *DeliverSM) GetUserMessageReference() (uint16, *Exception.Exception) {
 	return c.userMessageReference.GetValue()
 }
 
-func (c *DeliverSM) GetSourcePort() (int16, *Exception.Exception) {
+func (c *DeliverSM) GetSourcePort() (uint16, *Exception.Exception) {
 	return c.sourcePort.GetValue()
 }
 
-func (c *DeliverSM) GetDestinationPort() (int16, *Exception.Exception) {
+func (c *DeliverSM) GetDestinationPort() (uint16, *Exception.Exception) {
 	return c.destinationPort.GetValue()
 }
 
-func (c *DeliverSM) GetSarMsgRefNum() (int16, *Exception.Exception) {
+func (c *DeliverSM) GetSarMsgRefNum() (uint16, *Exception.Exception) {
 	return c.sarMsgRefNum.GetValue()
 }
 
@@ -685,6 +685,6 @@ func (c *DeliverSM) GetLanguageIndicator() (byte, *Exception.Exception) {
 	return c.languageIndicator.GetValue()
 }
 
-func (c *DeliverSM) GetItsSessionInfo() (int16, *Exception.Exception) {
+func (c *DeliverSM) GetItsSessionInfo() (uint16, *Exception.Exception) {
 	return c.itsSessionInfo.GetValue()
 }
